@@ -9,13 +9,21 @@ server.connection({
     port: 8000 
 });
 
+server.route({  
+    path: '/',
+    method: 'GET',
+    handler: function(request, reply) {
+        reply('hello');
+    }
+});
+
 // Add the route
 server.route({
     method: 'GET',
     path:'/hello', 
     handler: function (request, reply) {
 
-        return reply('hello world');
+        return reply('hello');
     }
 });
 
@@ -36,3 +44,4 @@ server.start((err) => {
     }
     console.log('Server running at:', server.info.uri);
 });
+module.exports = server;
