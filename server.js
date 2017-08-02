@@ -6,16 +6,17 @@ const Hapi = require('hapi');
 const server = new Hapi.Server();
 server.connection({ 
     host: 'localhost', 
-    port: 8000 
+    port: process.env.port || 3000 
 });
 
 server.route({  
     path: '/',
     method: 'GET',
     handler: function(request, reply) {
-        reply('hello');
+        reply('This is the default route');
     }
 });
+
 
 // Add the route
 server.route({
