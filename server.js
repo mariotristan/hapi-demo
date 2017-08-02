@@ -9,6 +9,7 @@ server.connection({
     port: process.env.port || 3000 
 });
 
+
 server.route({  
     path: '/',
     method: 'GET',
@@ -37,6 +38,31 @@ server.route({
         return reply('hola<br> mundo');
     }
 });
+
+//handle static files
+server.register(require('inert'), (err) => {
+
+    if (err) {
+        throw err;
+    }
+
+    server.route({
+        method: 'GET',
+        path: '/tree',
+        handler: function (request, reply) {
+            reply.file('public/tree.html');
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/{folder}/{filename}',
+        handler: function (request, reply) {
+            reply.file(request.params.folder + "/" +request.params.filename);
+        }
+    });
+});
+
 // Start the server
 server.start((err) => {
 
