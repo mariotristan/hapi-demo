@@ -17,7 +17,7 @@ describe('hello service', function() {
 
         server.inject(options, function(response) {
             expect(response.statusCode).to.equal(200);
-            expect(response.result).to.equal('hello');
+            expect(response.result).to.equal('This is the default route');
             done();
         });
     });
